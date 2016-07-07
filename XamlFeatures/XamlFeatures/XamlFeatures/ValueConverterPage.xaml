@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlFeatures;assembly=XamlFeatures"
+             x:Class="XamlFeatures.ValueConverterPage"
+             Title="Converter">
+  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:StringLengthtoBoolConverter x:Key="sl2bConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <StackLayout Padding="16"
+                 Spacing="8">
+    <Entry x:Name="mailEntry"
+           Text=""
+           Placeholder="Enter mail address"
+           Keyboard="Email"/>
+    <Entry x:Name="passwordEntry"
+           Text=""
+           Placeholder="Enter password"
+           IsPassword="True"/>
+    <!-- IsEnabledのbool値をBindしたpasswordEntryでConvertします -->
+    <Button Text="Login"
+            BindingContext="{x:Reference Name=passwordEntry}"
+            IsEnabled="{Binding Text, Converter={StaticResource sl2bConverter}}"/>
+    
+  </StackLayout>
+
+</ContentPage>

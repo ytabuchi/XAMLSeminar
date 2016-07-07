@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlFeatures;assembly=XamlFeatures"
+             x:Class="XamlFeatures.BehaviorsPage"
+             Title="Behaviors">
+  
+  <StackLayout Padding="16"
+                 Spacing="8">
+
+    <Entry x:Name="mailEntry"
+           Text=""
+           Placeholder="Enter mail address"
+           Keyboard="Email"
+           local:AttachedMailValidationBehavior.AttachBehavior="True"/>
+
+    <Entry x:Name="passwordEntry"
+           Text=""
+           Placeholder="Enter password"
+           IsPassword="True">
+      <Entry.Behaviors>
+        <local:LengthBehavior/>
+      </Entry.Behaviors>
+    </Entry>
+
+    <Entry x:Name="passwordEntry2"
+           Text=""
+           Placeholder="Retype password"
+           IsPassword="True">
+      <Entry.Behaviors>
+        <local:MinLengthToDisableBehavior MinLength="8" 
+                                          OtherView="{x:Reference Name=button}"/>
+      </Entry.Behaviors>
+    </Entry>
+
+    <Button x:Name="button"
+            Text="Login"/>
+  
+  </StackLayout>
+
+</ContentPage>

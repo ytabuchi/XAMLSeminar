@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlFeatures;assembly=XamlFeatures"
+             x:Class="XamlFeatures.DataTemplatePage"
+             Title="DataTemplate">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <!-- DataTemplate定義-->
+      <DataTemplate x:Key="maleTemplate">
+        <ViewCell>
+          <StackLayout Orientation="Horizontal"
+                       Padding="10,0,10,0"
+                       Spacing="10">
+            <BoxView Color="#a6d0ed"
+                     Margin="10,17,10,16"
+                     WidthRequest="10"
+                     HeightRequest="10"/>
+            <Label Text="{Binding Name}"
+                   VerticalTextAlignment="Center"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+      <DataTemplate x:Key="femaleTemplate">
+        <ViewCell>
+          <StackLayout Orientation="Horizontal"
+                       Padding="10,0,10,0"
+                       Spacing="10">
+            <BoxView Color="#eda6bb"
+                     Margin="10,17,10,16"
+                     WidthRequest="10"
+                     HeightRequest="10"/>
+            <Label Text="{Binding Name}"
+                   VerticalTextAlignment="Center"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+      <DataTemplate x:Key="gsmTemplate">
+        <ViewCell>
+          <StackLayout Orientation="Horizontal"
+                       Padding="10,0,10,0"
+                       Spacing="10">
+            <BoxView Color="#eae8e8"
+                     Margin="10,17,10,16"
+                     WidthRequest="10"
+                     HeightRequest="10"/>
+            <Label Text="{Binding Name}"
+                   VerticalTextAlignment="Center"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+      <!-- Selector指定 -->
+      <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+                                        MaleTemplate="{StaticResource maleTemplate}"
+                                        FemaleTemplate="{StaticResource femaleTemplate}"
+                                        GsmTemplate="{StaticResource gsmTemplate}"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ListView ItemsSource="{Binding}"
+          ItemTemplate="{StaticResource personDataTemplateSelector}"/>
+
+</ContentPage>

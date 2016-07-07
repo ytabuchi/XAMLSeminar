@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamlFeatures.ResourcesPage"
+             Title="Dynamic Resources">
+  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="textColor">Blue</Color>
+      <!-- DynamicResource として上記スタイルを指定 -->
+      <Style x:Key="labelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ContentPage.Content>
+    <StackLayout Padding="16"
+                 Spacing="8">
+      <Entry x:Name="entry"
+             Placeholder="Text Color like 000000"
+             Text=""/>
+      <Button Text="Change"
+              Clicked="OnButtonClicked"/>
+      <Label Text="Change the color"
+             Style="{DynamicResource labelStyle}"
+             FontSize="Large"
+             FontAttributes = "Bold"/>
+    </StackLayout>
+  </ContentPage.Content>
+  
+</ContentPage>
